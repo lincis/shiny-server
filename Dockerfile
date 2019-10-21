@@ -1,7 +1,7 @@
 FROM rocker/shiny:latest
 
 RUN apt-get update
-RUN apt-get install -y libjpeg-dev libssl-dev
+RUN apt-get install -y libjpeg-dev libssl-dev libxml2-dev libcurl4-openssl-dev
 RUN R -e 'install.packages(c("packrat"))'
 RUN usermod -u 1000 shiny
 RUN groupmod -g 1000 shiny
