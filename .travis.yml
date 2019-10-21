@@ -1,0 +1,11 @@
+dist: bionic
+
+jobs:
+  include:
+  - stage: build docker image
+    script:
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - docker pull $DOCKER_USERNAME/shiny-server:latest
+    - docker build $DOCKER_USERNAME/shiny-server:latest
+    - docker images
+    - docker push $DOCKER_USERNAME/shiny-server:latest
