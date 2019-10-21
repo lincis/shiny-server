@@ -1,11 +1,19 @@
 dist: bionic
-
 jobs:
   include:
   - stage: build docker image
     script:
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
     - docker pull $DOCKER_USERNAME/shiny-server:latest
-    - docker build $DOCKER_USERNAME/shiny-server:latest
+    - docker build docker build -t $DOCKER_USERNAME/shiny-server:latest --cache-from $DOCKER_USERNAME/shiny-server:latest
     - docker images
     - docker push $DOCKER_USERNAME/shiny-server:latest
+before_install:
+- openssl aes-256-cbc -K $encrypted_cb3ac80f042b_key -iv $encrypted_cb3ac80f042b_iv
+  -in deploy_key.enc -out ./deploy_key -d
+
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script:
+      - bash ./deploy.sh "$DEPLOY_HOST"

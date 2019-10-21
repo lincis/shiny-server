@@ -3,9 +3,7 @@ version: '2'
 services:
   shiny:
     restart: always
-    build:
-      dockerfile: Dockerfile
-      context: ./
+    image: linards/shiny-server:latest
     expose:
       - 3838
     volumes:
