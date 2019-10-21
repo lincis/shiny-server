@@ -5,7 +5,7 @@ jobs:
     script:
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
     - docker pull $DOCKER_USERNAME/shiny-server:latest
-    - docker build -t $DOCKER_USERNAME/shiny-server:latest --cache-from $DOCKER_USERNAME/shiny-server:latest
+    - docker build -t $DOCKER_USERNAME/shiny-server:latest --cache-from $DOCKER_USERNAME/shiny-server:latest .
     - docker images
     - docker push $DOCKER_USERNAME/shiny-server:latest
 before_install:
