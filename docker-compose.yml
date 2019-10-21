@@ -9,9 +9,6 @@ services:
     volumes:
       - ./appdir:/srv/shiny-server
       - ./logs:/var/log/shiny-server
-      - ./uploads:/var/lib/shiny-server/uploads
-      - ./scripts:/var/lib/shiny-server/scripts
-      - ./deployments:/var/lib/shiny-server/deploy
     user: 'shiny'
     environment:
       - VIRTUAL_HOST=${SHINY_HOST}
