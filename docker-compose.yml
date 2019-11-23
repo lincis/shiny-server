@@ -14,9 +14,15 @@ services:
       - VIRTUAL_HOST=${SHINY_HOST}
       - LETSENCRYPT_HOST=${SHINY_HOST}
       - LETSENCRYPT_EMAIL=${SHINY_ADMIN}
+    networks:
+      - default
+      - my-proxy
 
 
 networks:
   default:
     external:
       name: nginx-proxy
+  my-proxy:
+    external:
+      name: shared_network
