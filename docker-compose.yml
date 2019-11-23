@@ -14,6 +14,7 @@ services:
       - VIRTUAL_HOST=${SHINY_HOST}
       - LETSENCRYPT_HOST=${SHINY_HOST}
       - LETSENCRYPT_EMAIL=${SHINY_ADMIN}
+      - OBSERVER_API_HOST=${OBSERVER_API_HOST}
     networks:
       - default
       - my-proxy
